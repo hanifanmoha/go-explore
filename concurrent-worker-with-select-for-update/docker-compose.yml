@@ -1,0 +1,50 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: workerdb
+      POSTGRES_USER: worker
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5450:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  app1:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - GO_ENV=development
+      - WORKER_ID=worker1
+    working_dir: /app
+    command: reflex -c reflex.conf
+    depends_on: [ postgres ]
+  app2:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - GO_ENV=development
+      - WORKER_ID=worker2
+    working_dir: /app
+    command: reflex -c reflex.conf
+    depends_on: [ postgres ]
+  app3:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - GO_ENV=development
+      - WORKER_ID=worker3
+    working_dir: /app
+    command: reflex -c reflex.conf
+    depends_on: [ postgres ]
+volumes:
+  postgres_data:
