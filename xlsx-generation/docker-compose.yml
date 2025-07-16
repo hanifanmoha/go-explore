@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+    environment:
+      - GO_ENV=development
+    ports:
+      - "8081:8080"
+    working_dir: /app
+    command: reflex -c reflex.conf

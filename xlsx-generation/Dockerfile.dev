@@ -1,0 +1,21 @@
+FROM golang:1.24.2-bullseye
+
+WORKDIR /app
+
+# Install reflex for hot reload
+RUN go install github.com/cespare/reflex@latest
+
+# Copy go.mod and go.sum if they exist
+COPY go.mod* go.sum* ./
+
+# Download dependencies if go.mod exists
+RUN go mod tidy
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 8080
+
+# Default command (can be overridden by docker-compose)
+CMD ["reflex", "-c", "reflex.conf"]
