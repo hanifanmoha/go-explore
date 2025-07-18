@@ -72,6 +72,27 @@ func (t *APMTrace) Finish() {
 	}
 }
 
+// RecordError records an error in both Datadog span and New Relic segment
+func (t *APMTrace) RecordError(err error) {
+	if err == nil {
+		return
+	}
+
+	// Record error in Datadog span
+	if t.DDSpan != nil {
+		t.DDSpan.SetTag("error", true)
+		t.DDSpan.SetTag("error.msg", err.Error())
+		t.DDSpan.SetTag("error.type", "application_error")
+	}
+
+	// Record error in New Relic segment
+	if t.NRSegment != nil {
+		t.NRSegment.AddAttribute("error", true)
+		t.NRSegment.AddAttribute("error.message", err.Error())
+		t.NRSegment.AddAttribute("error.class", "ApplicationError")
+	}
+}
+
 func pingRepo1(ctx context.Context) {
 	// Start dual APM tracing
 	attributes := map[string]interface{}{
@@ -96,12 +117,16 @@ func pingRepo2(ctx context.Context) error {
 	defer trace.Finish()
 
 	i := rand.Intn(10)
-	if i < 3 {
-		errString := fmt.Sprintf("simulated error type %d", i)
-		return errors.New(errString)
-	} else if i < 5 {
-		errString := fmt.Sprintf("simulated error type %d", i)
-		return errors.New(errString)
+	if i < 2 {
+		errString := fmt.Sprintf("database connection failed - error type %d", i)
+		err := errors.New(errString)
+		trace.RecordError(err)
+		return err
+	} else if i < 4 {
+		errString := fmt.Sprintf("query timeout exceeded - error type %d", i)
+		err := errors.New(errString)
+		trace.RecordError(err)
+		return err
 	}
 
 	// sleep randomly to simulate work
@@ -125,7 +150,7 @@ func pingRepo3(ctx context.Context) {
 	time.Sleep(randomSleep)
 }
 
-func pingService(ctx context.Context) {
+func pingService(ctx context.Context) error {
 	// Start dual APM tracing
 	attributes := map[string]interface{}{
 		"user_id": generateRandomUserID(),
@@ -136,8 +161,16 @@ func pingService(ctx context.Context) {
 
 	time.Sleep(100 * time.Millisecond)
 	pingRepo1(ctx)
-	pingRepo2(ctx)
+
+	// Handle error from pingRepo2
+	if err := pingRepo2(ctx); err != nil {
+		trace.RecordError(err)
+		fmt.Printf("Error in pingRepo2: %v\n", err)
+		return err
+	}
+
 	pingRepo3(ctx)
+	return nil
 }
 
 func pingHandler(w http.ResponseWriter, r *http.Request) {
@@ -164,7 +197,13 @@ func pingHandler(w http.ResponseWriter, r *http.Request) {
 
 	time.Sleep(200 * time.Millisecond)
 
-	pingService(ctx)
+	err := pingService(ctx)
+
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		trace.RecordError(err)
+		return
+	}
 
 	fmt.Fprintln(w, "pong")
 }
