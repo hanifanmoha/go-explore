@@ -2,11 +2,11 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"math/rand"
 	"net/http"
 	"os"
-	"sync"
 	"time"
 
 	"github.com/newrelic/go-agent/v3/newrelic"
@@ -14,6 +14,11 @@ import (
 )
 
 var app *newrelic.Application
+
+// generateRandomUserID creates a random user ID for tracing
+func generateRandomUserID() string {
+	return fmt.Sprintf("user_%d", rand.Intn(10000))
+}
 
 func GetFromEnv(key string, defaultValue string) string {
 	value := os.Getenv(key)
@@ -29,15 +34,24 @@ type APMTrace struct {
 	NRSegment *newrelic.Segment
 }
 
-// StartTrace creates a new trace for both Datadog and New Relic
-func StartTrace(ctx context.Context, operationName string) (*APMTrace, context.Context) {
-	// Start Datadog span
-	ddSpan := tracer.StartSpan(operationName)
+// StartTrace creates a new trace for both Datadog and New Relic with custom attributes
+func StartTrace(ctx context.Context, operationName string, attributes map[string]interface{}) (*APMTrace, context.Context) {
+	// Start Datadog span with proper parent context
+	ddSpan, ddCtx := tracer.StartSpanFromContext(ctx, operationName)
+
+	// Add custom attributes to Datadog span
+	for key, value := range attributes {
+		ddSpan.SetTag(key, value)
+	}
 
 	// Start New Relic segment
 	var nrSegment *newrelic.Segment
 	if txn := newrelic.FromContext(ctx); txn != nil {
 		nrSegment = txn.StartSegment(operationName)
+		// Add custom attributes to New Relic segment
+		for key, value := range attributes {
+			nrSegment.AddAttribute(key, value)
+		}
 	}
 
 	trace := &APMTrace{
@@ -45,7 +59,7 @@ func StartTrace(ctx context.Context, operationName string) (*APMTrace, context.C
 		NRSegment: nrSegment,
 	}
 
-	return trace, ctx
+	return trace, ddCtx
 }
 
 // Finish ends both Datadog span and New Relic segment
@@ -60,17 +74,50 @@ func (t *APMTrace) Finish() {
 
 func pingRepo1(ctx context.Context) {
 	// Start dual APM tracing
-	trace, _ := StartTrace(ctx, "ping.repo1")
+	attributes := map[string]interface{}{
+		"user_id": generateRandomUserID(),
+		"repo":    "repo1",
+	}
+	trace, _ := StartTrace(ctx, "ping.repo1", attributes)
 	defer trace.Finish()
+
+	// sleep randomly to simulate work
+	randomSleep := time.Duration(50+rand.Intn(100)) * time.Millisecond
+	time.Sleep(randomSleep)
+}
+
+func pingRepo2(ctx context.Context) error {
+	// Start dual APM tracing
+	attributes := map[string]interface{}{
+		"user_id": generateRandomUserID(),
+		"repo":    "repo2",
+	}
+	trace, _ := StartTrace(ctx, "ping.repo2", attributes)
+	defer trace.Finish()
+
+	i := rand.Intn(10)
+	if i < 3 {
+		errString := fmt.Sprintf("simulated error type %d", i)
+		return errors.New(errString)
+	} else if i < 5 {
+		errString := fmt.Sprintf("simulated error type %d", i)
+		return errors.New(errString)
+	}
 
 	// sleep randomly to simulate work
 	randomSleep := time.Duration(rand.Intn(100)) * time.Millisecond
 	time.Sleep(randomSleep)
+
+	return nil
 }
 
-func pingRepo2(ctx context.Context) {
+func pingRepo3(ctx context.Context) {
 	// Start dual APM tracing
-	trace, _ := StartTrace(ctx, "ping.repo2")
+	attributes := map[string]interface{}{
+		"user_id": generateRandomUserID(),
+		"repo":    "repo3",
+	}
+	trace, _ := StartTrace(ctx, "ping.repo3", attributes)
 	defer trace.Finish()
 
 	// sleep randomly to simulate work
@@ -80,20 +127,17 @@ func pingRepo2(ctx context.Context) {
 
 func pingService(ctx context.Context) {
 	// Start dual APM tracing
-	trace, _ := StartTrace(ctx, "ping.service")
+	attributes := map[string]interface{}{
+		"user_id": generateRandomUserID(),
+		"service": "ping_service",
+	}
+	trace, ctx := StartTrace(ctx, "ping.service", attributes)
 	defer trace.Finish()
 
-	wg := &sync.WaitGroup{}
-	wg.Add(2)
-	go func() {
-		defer wg.Done()
-		pingRepo1(ctx)
-	}()
-	go func() {
-		defer wg.Done()
-		pingRepo2(ctx)
-	}()
-	wg.Wait()
+	time.Sleep(100 * time.Millisecond)
+	pingRepo1(ctx)
+	pingRepo2(ctx)
+	pingRepo3(ctx)
 }
 
 func pingHandler(w http.ResponseWriter, r *http.Request) {
@@ -109,8 +153,16 @@ func pingHandler(w http.ResponseWriter, r *http.Request) {
 	ctx := newrelic.NewContext(r.Context(), txn)
 
 	// Start dual APM tracing
-	trace, _ := StartTrace(ctx, "ping.handler")
+	attributes := map[string]interface{}{
+		"user_id": generateRandomUserID(),
+		"handler": "ping_handler",
+		"method":  r.Method,
+		"path":    r.URL.Path,
+	}
+	trace, ctx := StartTrace(ctx, "ping.handler", attributes)
 	defer trace.Finish()
+
+	time.Sleep(200 * time.Millisecond)
 
 	pingService(ctx)
 
