@@ -18,7 +18,7 @@ RUN go build -o cmd/main main.go
 ## Deploy
 ##
 
-FROM gcr.io/distroless/base-debian10
+FROM gcr.io/distroless/base-debian10:debug
 
 WORKDIR /
 
