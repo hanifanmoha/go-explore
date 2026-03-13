@@ -1,108 +1,34 @@
 package main
 
 import (
-	"context"
-	"encoding/json"
 	"fmt"
-	"os"
+	"net/http"
 	"time"
-
-	"github.com/hibiken/asynq"
 )
 
-const TaskFib = "task_fib"
-
-type FibPayload struct {
-	N int
+func SendEmail(to string, subject string) {
+	fmt.Printf("Sending email to %s with subject '%s ...'\n", to, subject)
+	// Simulate email sending delay
+	time.Sleep(3 * time.Second)
+	fmt.Println("Email sent!")
 }
 
-func fib(n int) int {
-	if n <= 1 {
-		return n
-	}
-	return fib(n-1) + fib(n-2)
-}
+func RegisterHandler(w http.ResponseWriter, r *http.Request) {
+	start := time.Now()
 
-func NewFibTask(n int) (*asynq.Task, error) {
-	payload, err := json.Marshal(FibPayload{N: n})
-	if err != nil {
-		return nil, err
-	}
-	return asynq.NewTask(TaskFib, payload), nil
-}
+	fmt.Println("Record user data to database.")
+	fmt.Println("Create other user related data.")
+	fmt.Println("Do other things.")
 
-func HandleFibonacciTask(ctx context.Context, t *asynq.Task) error {
+	SendEmail("user@example.com", "Welcome to async party!")
 
-	var p FibPayload
-	if err := json.Unmarshal(t.Payload(), &p); err != nil {
-		return err
-	}
-
-	fmt.Printf("Running task for n=%d\n", p.N)
-	result := fib(p.N)
-	fmt.Printf("Fibonacci of %d is %d\n", p.N, result)
-
-	err := os.WriteFile(fmt.Sprintf("./out/%d.txt", p.N), []byte(fmt.Sprintf("%d", result)), 0644)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
-
-func enqueue(client *asynq.Client, n int) error {
-	task, err := NewFibTask(n)
-	if err != nil {
-		return err
-	}
-
-	info, err := client.Enqueue(task)
-	if err != nil {
-		fmt.Println("Could not enqueue task:", err)
-		return err
-	}
-
-	fmt.Printf("Enqueued task: id=%s queue=%s\n", info.ID, info.Queue)
-	return nil
+	elapsed := time.Since(start)
+	fmt.Fprintf(w, "User Created! Time taken: %s", elapsed)
 }
 
 func main() {
+	http.HandleFunc("/register", RegisterHandler)
 
-	redisClient := asynq.RedisClientOpt{
-		Addr: "localhost:6379",
-		DB:   0,
-	}
-
-	client := asynq.NewClient(redisClient)
-	defer client.Close()
-
-	enqueue(client, 11)
-	enqueue(client, 51)
-	enqueue(client, 21)
-	enqueue(client, 44)
-	enqueue(client, 31)
-
-	runServer(&redisClient)
-
-}
-
-func runServer(redisClient *asynq.RedisClientOpt) {
-
-	srv := asynq.NewServer(redisClient, asynq.Config{
-		Concurrency: 2,
-	})
-
-	mux := asynq.NewServeMux()
-	mux.HandleFunc(TaskFib, HandleFibonacciTask)
-
-	go func() {
-		if err := srv.Start(mux); err != nil {
-			fmt.Println("Could not start server:", err)
-		}
-	}()
-
-	time.Sleep(60 * time.Second)
-
-	srv.Shutdown()
-	fmt.Println("Program finished!")
+	fmt.Println("Server running on :8080")
+	http.ListenAndServe(":8080", nil)
 }
