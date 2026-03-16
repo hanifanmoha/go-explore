@@ -20,13 +20,16 @@ func RegisterHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Create other user related data.")
 	fmt.Println("Do other things.")
 
-	SendEmail("user@example.com", "Welcome to async party!")
+	// Add task to queue instead of calling directly
+	// SendEmail("user@example.com", "Welcome to async party!")
+	AddTaskEmailSend("user@example.com", "Welcome to async party!")
 
 	elapsed := time.Since(start)
 	fmt.Fprintf(w, "User Created! Time taken: %s", elapsed)
 }
 
 func main() {
+	StartWorker()
 	http.HandleFunc("/register", RegisterHandler)
 
 	fmt.Println("Server running on :8080")
