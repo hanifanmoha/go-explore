@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: pguser123
+      POSTGRES_PASSWORD: pgpass123
+      POSTGRES_DB: mydb
+    ports:
+      - "5432:5432"
+    command: ["postgres", "-c", "max_connections=8"]
+
+  pgbouncer:
+    image: edoburu/pgbouncer
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: pguser123
+      DB_PASSWORD: pgpass123
+      POOL_MODE: transaction
+      MAX_CLIENT_CONN: 15          # How many total clients can connect to PgBouncer
+      DEFAULT_POOL_SIZE: 7          # How many real DB connections per user/db
+      AUTH_TYPE: scram-sha-256
+      AUTH_USER: pguser123         # PgBouncer uses this user to query pg_shadow
+      AUTH_QUERY: "SELECT usename, passwd FROM pg_shadow WHERE usename=$1"
+    ports:
+      - "6432:5432"
+    depends_on:
+      - db
