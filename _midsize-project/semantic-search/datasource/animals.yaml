@@ -1,0 +1,202 @@
+topic: Animals
+items:
+- title: camel
+  description: A camel is a large, even-toed ungulate with a distinctive hump on its back. They are known for their ability to survive in harsh desert environments and can go for long periods without water. Camels are used as working animals in many parts of the world and are also valued for their milk, meat, and wool. There are two main species of camels: the dromedary with one hump and the bactrian with two humps. Their humps store fat, which they can convert to energy and water when needed.
+- title: lion
+  description: The lion is a large carnivorous feline known as the "king of the jungle." Males have a distinctive mane, and they live in prides. Lions are apex predators in their habitats. They hunt cooperatively in groups, targeting large prey like zebras and wildebeests. Female lions do most of the hunting, while males protect the pride. Lions communicate through roars that can be heard for miles.
+- title: tiger
+  description: The tiger is the largest cat species, known for its striped coat and solitary nature. They are powerful hunters and are found in various habitats across Asia. Tigers have unique stripe patterns, like fingerprints in humans. They are excellent swimmers and climbers. Unfortunately, tigers are endangered due to habitat loss and poaching. Conservation efforts are underway to protect them.
+- title: elephant
+  description: Elephants are the largest land animals, with long trunks and tusks. They are highly intelligent, social creatures living in herds in Africa and Asia. Their trunks serve as noses, hands, and tools for various tasks. Elephants have excellent memories and mourn their dead. They consume large amounts of vegetation daily. Poaching for ivory threatens their populations.
+- title: giraffe
+  description: Giraffes are the tallest mammals, with long necks for reaching high foliage. They have distinctive spotted coats and live in savannas of Africa. Their necks can be up to 6 feet long. Giraffes sleep standing up for short periods. They have long tongues to grasp leaves. Despite their height, they can run up to 35 mph.
+- title: zebra
+  description: Zebras are striped equids native to Africa. Their stripes help with camouflage and social identification. They live in herds and are known for their speed. Each zebra has a unique stripe pattern. Zebras can run up to 40 mph to escape predators. They are social animals that form strong bonds.
+- title: monkey
+  description: Monkeys are primates with agile bodies and long tails. They are intelligent and social, living in troops in forests worldwide. Different species have varied diets and behaviors. Monkeys use tools and communicate complexly. They play important roles in ecosystems as seed dispersers. Some monkeys are endangered due to deforestation.
+- title: gorilla
+  description: Gorillas are large apes with powerful builds. They are mostly herbivorous and live in family groups in African rainforests. They have strong arms and can weigh up to 400 pounds. Gorillas are gentle giants despite their size. They communicate through grunts and gestures. Conservation is crucial as they face habitat threats.
+- title: panda
+  description: Pandas are bear-like mammals with black-and-white fur. They primarily eat bamboo and are native to mountainous regions of China. Pandas spend most of their time eating bamboo. They have a special thumb-like extension for grasping. Pandas are symbols of conservation efforts. Their populations are slowly recovering.
+- title: koala
+  description: Koalas are marsupials that spend most of their time in eucalyptus trees. They are native to Australia and have a diet almost exclusively of eucalyptus leaves. Koalas sleep up to 20 hours a day. They have strong claws for climbing. Eucalyptus provides both food and water. Koalas are not bears, despite their name.
+- title: kangaroo
+  description: Kangaroos are large marsupials known for their powerful hind legs and hopping locomotion. They are native to Australia and live in groups. Females carry joeys in pouches. Kangaroos can hop at speeds up to 44 mph. They use their tails for balance. Males engage in boxing matches.
+- title: bear
+  description: Bears are large carnivorous mammals with thick fur. They hibernate in winter and are found in various habitats worldwide. Different species have different diets and behaviors. Bears have excellent senses of smell. They are generally solitary except during mating. Some bears are threatened by human activities.
+- title: wolf
+  description: Wolves are social carnivores that live in packs. They are skilled hunters and communicate through howls. Found in forests and tundras. Wolves have complex social structures. They hunt cooperatively for large prey. Howling helps maintain pack cohesion.
+- title: fox
+  description: Foxes are small to medium-sized carnivores with bushy tails. They are adaptable and found in many environments, known for their cunning. Foxes have keen senses and are nocturnal. They eat a variety of foods. Foxes are solitary but form pairs during breeding. They are important in controlling rodent populations.
+- title: rabbit
+  description: Rabbits are small mammals with long ears and powerful hind legs. They are herbivores and known for their rapid reproduction. Rabbits live in burrows called warrens. They are prey for many predators. Domestic rabbits are popular pets. Wild rabbits are prolific breeders.
+- title: deer
+  description: Deer are hoofed mammals with antlers in males. They are herbivores and live in forests, known for their graceful movements. Antlers are shed and regrown annually. Deer are crepuscular, active at dawn and dusk. They have excellent hearing and smell. Some species migrate seasonally.
+- title: horse
+  description: Horses are large equids used for riding and work. They are social animals that live in herds on grasslands. Horses have been domesticated for thousands of years. They communicate through body language. Horses can sleep standing up. They have strong social bonds.
+- title: cow
+  description: Cows are domesticated ruminants valued for milk and meat. They are social and graze on pastures. Cows have four-chambered stomachs for digestion. They produce milk for calves and humans. Cows form hierarchies in herds. They are gentle and curious animals.
+- title: sheep
+  description: Sheep are woolly ruminants domesticated for wool, meat, and milk. They live in flocks and are known for following leaders. Sheep have excellent memories. They are sheared annually for wool. Lambs are born in spring. Sheep communicate through bleats.
+- title: goat
+  description: Goats are hardy ruminants with beards and horns. They are agile climbers and used for milk and meat. Goats are intelligent and curious. They can eat a wide variety of plants. Goats are social and form herds. They are used in weed control.
+- title: pig
+  description: Pigs are omnivorous mammals with snouts for rooting. They are intelligent and domesticated for food. Pigs have excellent senses of smell. They wallow in mud to cool off. Pigs are social and form groups. They are used in research due to intelligence.
+- title: dog
+  description: Dogs are domesticated carnivores known as man's best friend. They come in many breeds and are loyal companions. Dogs have been companions for 15,000 years. They communicate through barks and body language. Dogs have keen senses. They serve in various roles like service animals.
+- title: cat
+  description: Cats are small carnivorous mammals with retractable claws. They are independent and popular pets worldwide. Cats are nocturnal hunters. They purr for communication. Cats have flexible bodies. They are solitary but can be affectionate.
+- title: mouse
+  description: Mice are small rodents with pointed snouts. They are nocturnal and reproduce quickly. Mice have poor eyesight but excellent smell. They are prey for many animals. Mice live in nests. They can squeeze through small spaces.
+- title: rat
+  description: Rats are larger rodents known for their intelligence. They live in urban areas and can carry diseases. Rats are adaptable survivors. They have strong teeth for gnawing. Rats live in colonies. They are used in scientific research.
+- title: squirrel
+  description: Squirrels are agile rodents with bushy tails. They collect nuts and are common in parks and forests. Squirrels bury nuts for winter. They have excellent climbing skills. Squirrels communicate with chattering. They are diurnal animals.
+- title: chipmunk
+  description: Chipmunks are small striped rodents that store food. They are active during the day and hibernate in winter. Chipmunks have cheek pouches for carrying food. They live in burrows. Chipmunks are vocal with chirps. They eat seeds and insects.
+- title: beaver
+  description: Beavers are large rodents that build dams. They have flat tails and are excellent swimmers. Beavers modify their environments. They use their teeth to fell trees. Beavers live in family groups. Their dams create wetlands.
+- title: otter
+  description: Otters are playful aquatic mammals with sleek bodies. They are carnivorous and live near water. Otters use tools to open shellfish. They have dense fur for insulation. Otters are social and playful. They live in groups called rafts.
+- title: seal
+  description: Seals are marine mammals with flippers. They are carnivorous and spend time on land and in water. Seals have streamlined bodies for swimming. They eat fish and squid. Seals bask on rocks. They are agile in water.
+- title: dolphin
+  description: Dolphins are intelligent marine mammals known for their playful behavior. They communicate with clicks and whistles. Dolphins live in pods. They use echolocation to navigate. Dolphins are fast swimmers. They perform acrobatic jumps.
+- title: whale
+  description: Whales are large marine mammals that breathe air. They include species like blue whales, the largest animals on Earth. Whales migrate long distances. They communicate with songs. Whales eat krill or fish. They have blubber for insulation.
+- title: shark
+  description: Sharks are cartilaginous fish with sharp teeth. They are apex predators in oceans and have keen senses. Sharks have multiple rows of teeth. They detect prey with electroreception. Sharks are ancient creatures. Some species are endangered.
+- title: octopus
+  description: Octopuses are intelligent cephalopods with eight arms. They can change color and are found in oceans worldwide. Octopuses have complex nervous systems. They use ink for defense. Octopuses can squeeze through tight spaces. They are solitary hunters.
+- title: squid
+  description: Squids are fast-swimming cephalopods with long tentacles. They are predators and have ink for defense. Squids have jet propulsion. They change color for camouflage. Squids live in oceans. They are important in marine food chains.
+- title: jellyfish
+  description: Jellyfish are gelatinous sea creatures with stinging tentacles. They drift in oceans and come in various sizes. Jellyfish have no brain or heart. They reproduce asexually. Some species are bioluminescent. Jellyfish can cause painful stings.
+- title: starfish
+  description: Starfish are echinoderms with five arms. They can regenerate limbs and live on ocean floors. Starfish move slowly on tube feet. They eat mollusks and algae. Starfish have water vascular systems. They come in many colors.
+- title: crab
+  description: Crabs are crustaceans with hard shells and pincers. They walk sideways and are found in oceans and on land. Crabs have exoskeletons. They molt to grow. Crabs are scavengers. Some species live on land.
+- title: lobster
+  description: Lobsters are large marine crustaceans with claws. They are prized for their meat and live in rocky seabeds. Lobsters have blue blood. They walk backwards. Lobsters are nocturnal. They can live for decades.
+- title: shrimp
+  description: Shrimp are small crustaceans with long antennae. They are filter feeders and important in marine ecosystems. Shrimp swim backwards. They are a major food source. Shrimp have transparent bodies. They live in schools.
+- title: turtle
+  description: Turtles are reptiles with protective shells. They are slow-moving and can live long lives. Turtles lay eggs on land. They have been around for millions of years. Turtles migrate seasonally. Some species are endangered.
+- title: snake
+  description: Snakes are legless reptiles that slither. They are carnivorous and some are venomous. Snakes have flexible jaws. They shed skin periodically. Snakes use tongues to smell. They are cold-blooded.
+- title: lizard
+  description: Lizards are scaly reptiles with four legs. They are diverse and found in many habitats. Lizards can regenerate tails. They are ectothermic. Lizards eat insects and plants. Some species change color.
+- title: frog
+  description: Frogs are amphibians with smooth skin and long legs. They jump and live near water. Frogs undergo metamorphosis. They have vocal sacs for croaking. Frogs absorb water through skin. They are indicators of environmental health.
+- title: toad
+  description: Toads are amphibians similar to frogs but with drier skin. They have parotoid glands for defense. Toads hop rather than jump. They live in moist environments. Toads eat insects. They hibernate in winter.
+- title: eagle
+  description: Eagles are large birds of prey with sharp talons. They have excellent vision and are symbols of power. Eagles build large nests. They soar on thermal currents. Eagles hunt from great heights. They are monogamous.
+- title: hawk
+  description: Hawks are birds of prey with keen eyesight. They hunt small animals and soar in the sky. Hawks have sharp beaks. They are diurnal hunters. Hawks migrate seasonally. They have excellent hearing.
+- title: owl
+  description: Owls are nocturnal birds with silent flight. They have large eyes and are known for their hoots. Owls rotate heads 270 degrees. They have keen night vision. Owls eat rodents. They are solitary birds.
+- title: parrot
+  description: Parrots are colorful birds that can mimic sounds. They are intelligent and live in tropical regions. Parrots have strong beaks. They live in flocks. Parrots can learn words. They are long-lived.
+- title: penguin
+  description: Penguins are flightless birds that swim expertly. They live in cold climates and huddle for warmth. Penguins have waterproof feathers. They dive deep for food. Penguins mate for life. They waddle on land.
+- title: ostrich
+  description: Ostriches are large flightless birds with long necks. They are the fastest runners on land. Ostriches have powerful legs. They lay large eggs. Ostriches live in flocks. They are native to Africa.
+- title: flamingo
+  description: Flamingos are wading birds with pink plumage. They filter feed in shallow waters. Flamingos stand on one leg. They get color from diet. Flamingos live in large colonies. They migrate seasonally.
+- title: swan
+  description: Swans are large waterfowl with elegant necks. They are monogamous and known for their beauty. Swans have long lifespans. They are graceful swimmers. Swans defend territories. They are symbols of love.
+- title: duck
+  description: Ducks are waterfowl with webbed feet. They quack and are found in ponds and lakes. Ducks have waterproof feathers. They migrate in V formations. Ducks eat plants and insects. They are social birds.
+- title: chicken
+  description: Chickens are domesticated birds raised for eggs and meat. They have combs and wattles. Chickens have hierarchies. They scratch for food. Chickens communicate with clucks. They roost at night.
+- title: rooster
+  description: Roosters are male chickens known for crowing. They protect flocks and have colorful plumage. Roosters crow at dawn. They have spurs for defense. Roosters mate with hens. They are territorial.
+- title: turkey
+  description: Turkeys are large birds with fan-shaped tails. They are domesticated for Thanksgiving feasts. Turkeys have wattles. They gobble loudly. Turkeys are ground birds. They were almost extinct.
+- title: peacock
+  description: Peacocks are birds with iridescent tails. Males display their feathers in courtship. Peacocks have colorful plumage. They fan tails to attract mates. Peacocks are pheasants. They are native to Asia.
+- title: sparrow
+  description: Sparrows are small songbirds with brown plumage. They are common in urban areas. Sparrows build nests. They eat seeds. Sparrows are social. They sing to communicate.
+- title: robin
+  description: Robins are songbirds with red breasts. They are known for their cheerful songs. Robins eat worms. They migrate south. Robins have orange beaks. They are early spring birds.
+- title: butterfly
+  description: Butterflies are insects with colorful wings. They undergo metamorphosis from caterpillars. Butterflies have clubbed antennae. They sip nectar. Butterflies are pollinators. They live short adult lives.
+- title: bee
+  description: Bees are flying insects that pollinate flowers. They live in hives and produce honey. Bees have stingers. They communicate with dances. Bees work in colonies. They are essential for agriculture.
+- title: ant
+  description: Ants are social insects that live in colonies. They are hardworking and communicate via pheromones. Ants have castes. They build complex nests. Ants farm fungi. They are strong for size.
+- title: spider
+  description: Spiders are arachnids with eight legs. They spin webs to catch prey. Spiders have venom. They molt exoskeletons. Spiders are predators. They have multiple eyes.
+- title: scorpion
+  description: Scorpions are arachnids with pincers and stingers. They are nocturnal predators. Scorpions glow under UV light. They have exoskeletons. Scorpions are ancient. They live in deserts.
+- title: beetle
+  description: Beetles are insects with hard wing covers. They are the most diverse insect group. Beetles have elytra. They eat plants and animals. Beetles pollinate flowers. They are found everywhere.
+- title: ladybug
+  description: Ladybugs are small beetles with spotted wings. They eat aphids and are considered lucky. Ladybugs have bright colors. They hibernate in groups. Ladybugs are beneficial insects. They fly well.
+- title: dragonfly
+  description: Dragonflies are insects with large eyes and wings. They are skilled fliers and predators. Dragonflies have 360-degree vision. They eat mosquitoes. Dragonflies lay eggs in water. They are ancient insects.
+- title: mosquito
+  description: Mosquitoes are flying insects that bite for blood. Females lay eggs in water. Mosquitoes spread diseases. They have proboscis. Mosquitoes are annoying pests. They live short lives.
+- title: fly
+  description: Flies are insects with one pair of wings. They are common pests and carry diseases. Flies have compound eyes. They lay eggs on food. Flies are fast. They are decomposers.
+- title: bat
+  description: Bats are flying mammals with echolocation. They are nocturnal and eat insects or fruit. Bats have wings of skin. They navigate with sound. Bats are mammals. They roost in caves.
+- title: hedgehog
+  description: Hedgehogs are spiny mammals that roll into balls. They are insectivores and found in Europe and Asia. Hedgehogs have quills. They hibernate. Hedgehogs eat insects. They are nocturnal.
+- title: porcupine
+  description: Porcupines are rodents with quills for defense. They are herbivores and climb trees. Porcupines have sharp quills. They are slow movers. Porcupines eat bark. They are solitary.
+- title: skunk
+  description: Skunks are mammals known for their defensive spray. They are omnivores and have black-and-white fur. Skunks spray musk. They are nocturnal. Skunks dig burrows. They eat insects.
+- title: raccoon
+  description: Raccoons are masked mammals with dexterous paws. They are nocturnal and adaptable. Raccoons wash food. They are intelligent. Raccoons live in trees. They are urban adapters.
+- title: badger
+  description: Badgers are burrowing mammals with strong claws. They are carnivores and live in dens. Badgers dig complex burrows. They are fierce. Badgers eat rodents. They are nocturnal.
+- title: weasel
+  description: Weasels are small carnivores with long bodies. They are agile hunters and have musk glands. Weasels kill prey larger than themselves. They are curious. Weasels have high metabolism. They are solitary.
+- title: ferret
+  description: Ferrets are domesticated weasels with playful natures. They are used for hunting and as pets. Ferrets are curious. They sleep a lot. Ferrets are social. They need exercise.
+- title: mink
+  description: Minks are semi-aquatic carnivores with valuable fur. They are skilled swimmers. Minks hunt fish. They are solitary. Minks have dense fur. They are farmed for pelts.
+- title: lynx
+  description: Lynxes are wild cats with tufted ears. They are solitary hunters in cold regions. Lynxes have snowshoe paws. They hunt rabbits. Lynxes are elusive. They have thick fur.
+- title: cheetah
+  description: Cheetahs are the fastest land animals. They have spotted coats and hunt by speed. Cheetahs reach 70 mph. They have non-retractable claws. Cheetahs are vulnerable. They live in Africa.
+- title: leopard
+  description: Leopards are spotted big cats with climbing ability. They are stealthy predators. Leopards are adaptable. They drag prey up trees. Leopards are solitary. They have rosettes.
+- title: jaguar
+  description: Jaguars are powerful big cats with rosettes. They are excellent swimmers and hunters. Jaguars have strong jaws. They live in rainforests. Jaguars are apex predators. They are endangered.
+- title: panther
+  description: Panthers are black big cats, often leopards or jaguars. They are elusive and strong. Panthers have melanism. They are nocturnal. Panthers are symbols of mystery. They are rare.
+- title: hyena
+  description: Hyenas are carnivorous mammals with powerful jaws. They live in clans and scavenge. Hyenas laugh. They are matriarchal. Hyenas hunt cooperatively. They are misunderstood.
+- title: jackal
+  description: Jackals are dog-like carnivores that hunt in packs. They are adaptable and found in Africa and Asia. Jackals are opportunistic. They eat carrion. Jackals are vocal. They are solitary hunters.
+- title: coyote
+  description: Coyotes are wild dogs native to North America. They are intelligent and opportunistic hunters. Coyotes howl. They are adaptable. Coyotes eat varied diets. They are expanding ranges.
+- title: dingo
+  description: Dingoes are wild dogs from Australia. They are lean and hunt in packs. Dingoes are introduced. They hunt kangaroos. Dingoes are feral. They have pointed ears.
+- title: tasmanian devil
+  description: Tasmanian devils are carnivorous marsupials with powerful jaws. They are native to Tasmania. Devils scream. They are black with white spots. Devils eat carrion. They are endangered.
+- title: wombat
+  description: Wombats are burrowing marsupials with cube-shaped poop. They are herbivores and live in Australia. Wombats dig tunnels. They are plump. Wombats eat grass. They are nocturnal.
+- title: platypus
+  description: Platypuses are egg-laying mammals with duck bills. They are venomous and swim in rivers. Platypuses lay eggs. They have webbed feet. Platypuses detect prey with bills. They are monotremes.
+- title: echidna
+  description: Echidnas are spiny egg-laying mammals. They eat ants and are found in Australia and New Guinea. Echidnas have tongues. They roll into balls. Echidnas lay eggs. They are monotremes.
+- title: kiwi
+  description: Kiwis are flightless birds with long beaks. They are nocturnal and native to New Zealand. Kiwis have nostrils on beaks. They eat worms. Kiwis are endangered. They have poor vision.
+- title: emu
+  description: Emus are large flightless birds from Australia. They have long legs and can run fast. Emus are curious. They eat plants. Emus have blue necks. They are ratites.
+- title: cassowary
+  description: Cassowaries are large flightless birds with crests. They are dangerous and live in rainforests. Cassowaries have casque. They kick with claws. Cassowaries eat fruit. They are solitary.
+- title: quokka
+  description: Quokkas are small marsupials known as "smiling" animals. They are friendly and found in Australia. Quokkas are photogenic. They eat plants. Quokkas are macropods. They are endangered.
+- title: sloth
+  description: Sloths are slow-moving arboreal mammals. They hang upside down and eat leaves. Sloths have algae on fur. They move slowly. Sloths sleep a lot. They are folivores.
+- title: armadillo
+  description: Armadillos are armored mammals that roll into balls. They dig burrows and eat insects. Armadillos have shells. They are myrmecophagous. Armadillos carry leprosy. They are xenarthrans.
+- title: pangolin
+  description: Pangolins are scaly mammals that roll into balls. They eat ants and are endangered. Pangolins have tongues. They are trafficked. Pangolins are nocturnal. They are unique.
+- title: aardvark
+  description: Aardvarks are nocturnal mammals with long tongues. They eat ants and termites. Aardvarks dig burrows. They have strong claws. Aardvarks are myrmecophagous. They are crepuscular.
