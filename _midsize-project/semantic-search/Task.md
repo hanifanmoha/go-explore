@@ -2,7 +2,7 @@
 
 - This is a project to discover implement semantic search with embedding
 - I will use Gemini API to do embedding
-- I have prepared a dataset of animal descriptions in YAML format, in /datasource/animals.yaml
+- I have prepared a dataset of animal descriptions in JSON format, in /datasource/animals.json
 - This project will be implemented in golang
 
 # Tech Stack
@@ -19,9 +19,9 @@
 
 ## Embedding Steps
 
-- Use data in /datasource/animals.yaml as datasource
+- Use data in /datasource/animals.json as datasource
 - Create a CLI with cobra to create embedding and store in PostgreSQL
-  - Also, save the vector data in the original yaml file in the animal records
+  - Also, save the vector data in the original json file in the animal records
 
 ## API Steps : Documentation UI
 
@@ -48,7 +48,8 @@
   - `go get github.com/spf13/cobra@latest` for CLI.
   - `go get github.com/gin-gonic/gin` for API.
   - `go get gopkg.in/yaml.v3` for YAML parsing.
-  - `go get github.com/lib/pq` for PostgreSQL driver.
+  - `go get github.com/jackc/pgx/v5` for PostgreSQL driver (pgx).
+  - `go get github.com/Masterminds/squirrel` for dynamic SQL query building.
   - `go get github.com/google/generative-ai-go/genai` for Gemini API (assuming the package name).
 - Set up the project directory structure:
   - `cmd/` for CLI commands.
@@ -78,9 +79,30 @@
   ```
 - Design the PostgreSQL schema:
   - Table `items` with columns: `id` (serial primary key), `topic` (text), `title` (text), `description` (text), `embedding` (vector(768) for Gemini embeddings).
-- Create a database package in `internal/database/` to handle connections and migrations.
+  - SQL CREATE TABLE statement:
+    ```sql
+    CREATE EXTENSION IF NOT EXISTS vector;
+    CREATE TABLE items (
+        id SERIAL PRIMARY KEY,
+        topic TEXT NOT NULL,
+        title TEXT NOT NULL,
+        description TEXT NOT NULL,
+        embedding VECTOR(768)
+    );
+    ```
+  - Go struct for the model:
+    ```go
+    type Item struct {
+        ID          int       `db:"id" json:"id"`
+        Topic       string    `db:"topic" json:"topic"`
+        Title       string    `db:"title" json:"title"`
+        Description string    `db:"description" json:"description"`
+        Embedding   []float32 `db:"embedding" json:"embedding"`
+    }
+    ```
+- Create a database package in `internal/database/` to handle connections and migrations using pgx.
 - Use SQL scripts or Go code to create tables.
-- Implement functions to insert and query items with embeddings.
+- Implement functions to insert and query items with embeddings, using squirrel for dynamic queries where needed.
 
 # Step 3: Implement Embedding CLI with Cobra
 
