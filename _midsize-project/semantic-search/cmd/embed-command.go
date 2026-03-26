@@ -15,11 +15,11 @@ var EmbedCmd = &cobra.Command{
 	Long:  `Generate embeddings for a given text using the Gemini API`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("Running embeddings...")
-		ProcessEmbed()
+		processEmbed()
 	},
 }
 
-func ProcessEmbed() {
+func processEmbed() {
 
 	helper.LoadEnv()
 

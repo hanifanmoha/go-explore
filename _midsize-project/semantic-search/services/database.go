@@ -110,7 +110,67 @@ func (d *DatabaseService) SearchEmbeddings(ctx context.Context, queryEmbedding [
 	}
 
 	return results, nil
+}
 
+func (d *DatabaseService) GetTopics(ctx context.Context) ([]string, error) {
+	rows, err := d.Pool.Query(ctx, `
+		SELECT DISTINCT topic
+		FROM embeddings
+	`)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute get topics query: %w", err)
+	}
+	defer rows.Close()
+
+	var topics []string
+	for rows.Next() {
+		var topic string
+		if err := rows.Scan(&topic); err != nil {
+			return nil, fmt.Errorf("failed to scan row: %w", err)
+		}
+		topics = append(topics, topic)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("error iterating over rows: %w", err)
+	}
+
+	return topics, nil
+}
+
+func (d *DatabaseService) GetEmbeddingsByTopic(ctx context.Context, topic string) ([]models.Embedding, error) {
+	rows, err := d.Pool.Query(ctx, `
+		SELECT id, topic, name, description, embedding
+		FROM embeddings
+		WHERE topic = $1
+	`, topic)
+	if err != nil {
+		return nil, fmt.Errorf("failed to execute get embeddings by topic query: %w", err)
+	}
+	defer rows.Close()
+
+	var results []models.Embedding
+	for rows.Next() {
+		var e models.Embedding
+		var embeddingJSON string
+
+		if err := rows.Scan(&e.ID, &e.Topic, &e.Name, &e.Description, &embeddingJSON); err != nil {
+			return nil, fmt.Errorf("failed to scan row: %w", err)
+		}
+
+		e.Embedding, err = helper.JSONToEmbedding(embeddingJSON)
+		if err != nil {
+			return nil, fmt.Errorf("failed to convert embedding JSON to slice: %w", err)
+		}
+
+		results = append(results, e)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, fmt.Errorf("error iterating over rows: %w", err)
+	}
+
+	return results, nil
 }
 
 func (d *DatabaseService) initializeSchema() error {
