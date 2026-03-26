@@ -116,6 +116,7 @@ func (h *RouteHandler) GetSearchPage(w http.ResponseWriter, r *http.Request) {
 
 	topicList, err := h.dbConnection.GetTopics(r.Context())
 	if err != nil {
+		log.Printf("Error fetching topic list: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -124,18 +125,18 @@ func (h *RouteHandler) GetSearchPage(w http.ResponseWriter, r *http.Request) {
 	if searchQuery != "" {
 		vector, err := h.genaiSvc.GenerateEmbedding(searchQuery, services.TaskTypeRetrievalQuery)
 		if err != nil {
+			log.Printf("Error generating embedding for search query: %v\n", err)
 			http.Error(w, "Failed to generate embedding for search query", http.StatusInternalServerError)
 			return
 		}
 
 		embeddings, err = h.dbConnection.SearchEmbeddings(r.Context(), vector, 3)
 		if err != nil {
+			log.Printf("Error performing search: %v", err)
 			http.Error(w, "Failed to perform search", http.StatusInternalServerError)
 			return
 		}
 	}
-
-	tmpl := template.Must(template.ParseGlob("views/*.html"))
 
 	data := map[string]any{
 		"SearchQuery": searchQuery,
@@ -143,7 +144,10 @@ func (h *RouteHandler) GetSearchPage(w http.ResponseWriter, r *http.Request) {
 		"ItemList":    embeddings,
 	}
 
+	tmpl := template.Must(template.ParseFiles("views/base.html", "views/index.html"))
+
 	if err := tmpl.ExecuteTemplate(w, "index.html", data); err != nil {
+		log.Printf("Error executing template: %v", err)
 		http.Error(w, "Failed to render template", http.StatusInternalServerError)
 		return
 	}
@@ -155,17 +159,19 @@ func (h *RouteHandler) GetTopicPage(w http.ResponseWriter, r *http.Request) {
 
 	topicList, err := h.dbConnection.GetTopics(r.Context())
 	if err != nil {
+		log.Printf("Error fetching topic list: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	embeddings, err := h.dbConnection.GetEmbeddingsByTopic(r.Context(), topicName)
 	if err != nil {
+		log.Printf("Error fetching topic data: %v", err)
 		http.Error(w, "Failed to fetch topic data", http.StatusInternalServerError)
 		return
 	}
 
-	tmpl := template.Must(template.ParseGlob("views/*.html"))
+	tmpl := template.Must(template.ParseFiles("views/base.html", "views/topic.html"))
 
 	data := map[string]any{
 		"TopicList": topicList,
@@ -173,6 +179,7 @@ func (h *RouteHandler) GetTopicPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := tmpl.ExecuteTemplate(w, "topic.html", data); err != nil {
+		log.Printf("Error executing template: %v", err)
 		http.Error(w, "Failed to render template", http.StatusInternalServerError)
 		return
 	}

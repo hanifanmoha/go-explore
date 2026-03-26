@@ -1,52 +1,19 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>Semantic Search</title>
-  <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
-  <style>
-    .nav {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      padding: 0;
-    }
-    .nav a {
-      text-transform: capitalize;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h2>Semantic Search</h2>
-    <ul class="nav">
-      <li><a style="text-transform: capitalize;" href="/">Search</a></li>
-      <li>|</li>
-      {{range .TopicList}}
-        <li><a style="text-transform: capitalize;" href="/{{.}}">{{.}}</a></li>
-      {{end}}
-    </ul>
-  </header>
-  <main>
-    
-    <label>Query</label>
-    <textarea rows="6" id="search-query">{{.SearchQuery}}</textarea>
-    <button id="search-button">Search</button>
+{{template "base" .}}
 
-    {{if .SearchQuery}}
-      <h3>Search Results</h3>
-    {{end}}
-    {{range .ItemList}}
-      <details name="search-result" >
-        <summary><a href="/{{.Topic}}#{{.Name}}">{{.Name}}</a></summary>
-        <p>{{.Description}}</p>
-      </details>
-    {{end}}
-  </main>
-  <footer>
-    <p>2026</p>
-  </footer>
+{{define "content"}}
+  <label>Query</label>
+  <textarea rows="6" id="search-query">{{.SearchQuery}}</textarea>
+  <button id="search-button">Search</button>
+
+  {{if .SearchQuery}}
+    <h3>Search Results</h3>
+  {{end}}
+  {{range .ItemList}}
+    <details name="search-result" >
+      <summary><a href="/{{.Topic}}#{{.Name}}">{{.Name}}</a></summary>
+      <p>{{.Description}}</p>
+    </details>
+  {{end}}
 
   <script>
     document.getElementById('search-button').addEventListener('click', function() {
@@ -54,5 +21,4 @@
       window.location.href = `/?q=${encodeURIComponent(query)}`;
     });
   </script>
-</body>
-</html>
+{{end}}
