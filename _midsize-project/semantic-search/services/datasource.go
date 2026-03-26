@@ -20,9 +20,25 @@ type DataSourceService struct {
 func NewDataSourceService() (*DataSourceService, error) {
 
 	ds := &DataSourceService{}
-	err := ds.LoadDataSource()
+	return ds, nil
+}
 
-	return ds, err
+func (d *DataSourceService) GetDataSource(topic string) (models.DataSourceTopic, error) {
+
+	file, err := os.Open("./datasource/" + topic + ".json")
+	if err != nil {
+		return models.DataSourceTopic{}, err
+	}
+	defer file.Close()
+
+	decoder := json.NewDecoder(file)
+	var topicData models.DataSourceTopic
+	err = decoder.Decode(&topicData)
+	if err != nil {
+		return models.DataSourceTopic{}, err
+	}
+
+	return topicData, nil
 }
 
 func (d *DataSourceService) LoadDataSource() error {

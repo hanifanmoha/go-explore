@@ -1,0 +1,85 @@
+{
+  "topic": "sports",
+  "items": [
+    {
+      "name": "Soccer",
+      "description": "Soccer, also known as football, is the world's most popular sport. It is played between two teams of eleven players each. The objective is to score goals by kicking a ball into the opponent's net. The game is governed by FIFA and played in over 200 countries. Major tournaments include the World Cup and Champions League."
+    },
+    {
+      "name": "Basketball",
+      "description": "Basketball is a fast-paced team sport played on a rectangular court. Two teams compete to score points by shooting a ball through a hoop. The game was invented by James Naismith in 1891. NBA is the premier professional league. It requires athleticism, strategy, and precision."
+    },
+    {
+      "name": "Baseball",
+      "description": "Baseball is a bat-and-ball game played between two teams of nine players. Players take turns batting and fielding. The game proceeds when a player on the fielding team throws a ball and the batter hits it. MLB is the oldest professional sports league. It is especially popular in the United States."
+    },
+    {
+      "name": "American Football",
+      "description": "American football is a full-contact team sport played on a rectangular field. Two teams compete to advance an oval ball into the opponent's end zone. The NFL is the most popular professional league. It combines strategy, physicality, and athletic skill. Super Bowl is the championship game."
+    },
+    {
+      "name": "Tennis",
+      "description": "Tennis is a racket sport that can be played individually or in doubles. Players use rackets to hit a ball over a net. The objective is to hit the ball in a way that the opponent cannot return it. Grand Slam tournaments are the most prestigious. It requires agility, strength, and mental focus."
+    },
+    {
+      "name": "Golf",
+      "description": "Golf is a precision club-and-ball sport played on a course. Players aim to hit a small ball into a series of holes using as few strokes as possible. The Masters, PGA Championship, and other majors are major events. It is both a leisure activity and a competitive sport. Golf courses vary in length and difficulty."
+    },
+    {
+      "name": "Cricket",
+      "description": "Cricket is a bat-and-ball game played between two teams of eleven players. It is popular in countries like England, India, and Australia. The game can last from a few hours to five days. ICC governs international cricket. Formats include Test, ODI, and T20."
+    },
+    {
+      "name": "Hockey",
+      "description": "Hockey refers to field hockey and ice hockey variants. Ice hockey is played on ice with sticks and a puck. NHL is the premier professional ice hockey league. Field hockey is played on grass or turf. Both require speed, skill, and teamwork."
+    },
+    {
+      "name": "Rugby",
+      "description": "Rugby is a full-contact team sport that originated in England. It is played with an oval ball on a rectangular field. Rugby World Cup is the premier international competition. There are Rugby Union and Rugby League codes. It emphasizes physicality and strategy."
+    },
+    {
+      "name": "Volleyball",
+      "description": "Volleyball is a team sport played by two teams of six players. The objective is to score points by grounding the ball on the opponent's court. It can be played indoors or on the beach. FIVB governs international volleyball. It requires jumping, spiking, and blocking skills."
+    },
+    {
+      "name": "Swimming",
+      "description": "Swimming is an individual or team sport that involves moving through water. Competitive swimming includes various strokes like freestyle and butterfly. Olympic Games feature swimming events. It builds cardiovascular fitness and muscle strength. Pools and open water venues are used."
+    },
+    {
+      "name": "Athletics",
+      "description": "Athletics, also known as track and field, includes running, jumping, and throwing events. It is the oldest form of organized sport. Olympic Athletics features sprints, marathons, and field events. Athletes train for speed, strength, and technique. World Championships are major competitions."
+    },
+    {
+      "name": "Boxing",
+      "description": "Boxing is a combat sport where two fighters throw punches at each other. It is governed by weight classes and rounds. Professional boxing has champions in various divisions. Olympic boxing is also popular. It requires strength, speed, and defensive skills."
+    },
+    {
+      "name": "MMA",
+      "description": "Mixed Martial Arts combines various combat sports techniques. Fighters use striking, grappling, and submissions. UFC is the premier MMA promotion. It has become a global phenomenon. MMA requires comprehensive fighting skills."
+    },
+    {
+      "name": "Cycling",
+      "description": "Cycling includes road racing, track cycling, and mountain biking. Tour de France is the most famous road race. It can be competitive or recreational. Cycling builds leg strength and endurance. Safety gear like helmets is essential."
+    },
+    {
+      "name": "Skiing",
+      "description": "Skiing involves sliding down snow-covered slopes on skis. Alpine skiing focuses on speed and turns. Cross-country skiing emphasizes endurance. Winter Olympics feature skiing events. It requires balance, strength, and technique."
+    },
+    {
+      "name": "Surfing",
+      "description": "Surfing is a water sport where riders stand on a board and ride waves. It originated in Polynesia. Professional surfing has world tours and competitions. Surfers need balance, timing, and wave knowledge. It is popular in coastal areas."
+    },
+    {
+      "name": "Skateboarding",
+      "description": "Skateboarding involves riding and performing tricks on a skateboard. It started as a surfing alternative. X Games and Olympics feature skateboarding. Street and park styles are popular. It requires creativity, balance, and courage."
+    },
+    {
+      "name": "Table Tennis",
+      "description": "Table tennis, or ping pong, is played on a small table with paddles and a ball. It requires quick reflexes and precision. ITTF governs international table tennis. It can be played recreationally or competitively. Olympic sport since 1988."
+    },
+    {
+      "name": "Badminton",
+      "description": "Badminton is a racket sport played with a shuttlecock over a net. It can be singles or doubles. BWF governs international badminton. It requires agility and hand-eye coordination. Olympic sport with major tournaments."
+    }
+  ]
+}
