@@ -1,4 +1,4 @@
-package behaviouralpatterns
+package chainofresponsibility
 
 import (
 	"fmt"
@@ -6,14 +6,6 @@ import (
 )
 
 // https://refactoring.guru/design-patterns/chain-of-responsibility/go/example
-
-// ===== REQUEST STRUCT =====
-
-type Request struct {
-	Path  string
-	Role  string
-	Token string
-}
 
 // ====== MIDDLEWARE INTERFACE =====
 
@@ -106,6 +98,14 @@ func (l *LoggerMiddleware) execute(request *Request) error {
 
 func (l *LoggerMiddleware) setNext(m Middleware) {
 	l.next = m
+}
+
+// ===== REQUEST STRUCT =====
+
+type Request struct {
+	Path  string
+	Role  string
+	Token string
 }
 
 // ====== HANDLER =====
