@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cinemadb
+  service:
+    build:
+      context: ./service
+      dockerfile: Dockerfile.dev
+    ports:
+      - "6001:6001"
+    volumes:
+      - ./service:/app
+    environment:
+      - DB_URL=postgres://postgres:password@postgres:5432/cinemadb?sslmode=disable
+      - PORT=6001
+    depends_on:
+      - postgres
