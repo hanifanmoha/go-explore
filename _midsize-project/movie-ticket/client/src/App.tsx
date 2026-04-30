@@ -8,6 +8,7 @@ import useStep from "./hooks/useStep"
 import { useLocalStorage } from "./hooks/useLocalStorage"
 import { generateRandomID } from "./utils/idGenerator"
 import useCart from "./hooks/useCart"
+import { getApiBaseUrl } from "./env"
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`http://localhost:6001/bookings/${userID}`)
+    fetch(`${getApiBaseUrl()}/bookings/${userID}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && Array.isArray(data)) {

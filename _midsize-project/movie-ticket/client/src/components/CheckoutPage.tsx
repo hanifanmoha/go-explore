@@ -3,6 +3,7 @@ import useCart from "../hooks/useCart"
 import useStep from "../hooks/useStep"
 import { MovieCard } from "./MovieCard"
 import { generateRandomID } from "../utils/idGenerator"
+import { getApiBaseUrl } from "../env"
 
 export default function CheckoutPage() {
 
@@ -17,7 +18,7 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (!movieID) return
-    fetch(`http://localhost:6001/movies/${movieID}`)
+    fetch(`${getApiBaseUrl()}/movies/${movieID}`)
       .then((response) => response.json())
       .then((data) => {
         setMovie(data)
@@ -37,7 +38,7 @@ export default function CheckoutPage() {
 
   async function handleCheckout() {
     try {
-      const response = await fetch("http://localhost:6001/bookings", {
+      const response = await fetch(`${getApiBaseUrl()}/bookings`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

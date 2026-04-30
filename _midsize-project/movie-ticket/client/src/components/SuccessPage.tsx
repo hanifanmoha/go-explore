@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 import { generateRandomID } from "../utils/idGenerator"
+import { getApiBaseUrl } from "../env"
 
 export default function SuccessPage() {
 
@@ -8,7 +9,7 @@ export default function SuccessPage() {
   const [userID, setUserID] = useLocalStorage("userID", "")
 
   useEffect(() => {
-    fetch(`http://localhost:6001/bookings/${userID}`)
+    fetch(`${getApiBaseUrl()}/bookings/${userID}`)
       .then((res) => res.json())
       .then((data) => {
         if (data && Array.isArray(data)) {

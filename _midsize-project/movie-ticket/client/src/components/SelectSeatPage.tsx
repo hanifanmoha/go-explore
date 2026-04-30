@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import useCart from "../hooks/useCart"
 import useStep from "../hooks/useStep"
+import { getApiBaseUrl } from "../env"
 
 interface SeatProps {
   isSelected: boolean
@@ -92,10 +93,9 @@ export default function SelectSeatPage() {
   const [seats, setSeats] = useState([])
 
   useEffect(() => {
-    // GET http://localhost:6001/movies/{movieID}/seats
     if (!movieID) return
 
-    fetch(`http://localhost:6001/movies/${movieID}/seats`)
+    fetch(`${getApiBaseUrl()}/movies/${movieID}/seats`)
       .then((response) => response.json())
       .then((data) => {
         setSeats(data)

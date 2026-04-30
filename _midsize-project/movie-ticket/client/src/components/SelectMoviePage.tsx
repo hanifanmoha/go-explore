@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import useCart from '../hooks/useCart'
 import useStep from '../hooks/useStep'
 import { MovieCard } from './MovieCard'
+import { getApiBaseUrl } from '../env'
 
 export default function SelectMoviePage() {
 
@@ -11,9 +12,7 @@ export default function SelectMoviePage() {
   const [movies, setMovies] = useState([])
 
   useEffect(() => {
-    // GET http://localhost:6001/movies
-
-    fetch('http://localhost:6001/movies')
+    fetch(`${getApiBaseUrl()}/movies`)
       .then((response) => response.json())
       .then((data) => {
         setMovies(data)

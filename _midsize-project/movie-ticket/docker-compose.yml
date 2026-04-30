@@ -18,3 +18,16 @@ services:
       - PORT=6001
     depends_on:
       - postgres
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    ports:
+      - "6002:5173"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    environment:
+      - VITE_API_URL=http://localhost:6001
+    depends_on:
+      - service
