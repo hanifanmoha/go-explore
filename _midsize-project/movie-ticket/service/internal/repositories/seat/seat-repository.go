@@ -81,7 +81,8 @@ func (r *SeatRepository) UpdateSeatStatus(ctx context.Context, tx pgx.Tx, seatID
 	query := sq.Update("seats").
 		Set("status", status).
 		Set("updated_at", sq.Expr("NOW()")).
-		Where(sq.Eq{"id": seatID})
+		Where(sq.Eq{"id": seatID}).
+		PlaceholderFormat(sq.Dollar)
 
 	sql, args, err := query.ToSql()
 

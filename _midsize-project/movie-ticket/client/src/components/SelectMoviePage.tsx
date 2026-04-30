@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-// import { movies as allMovies } from '../data'
 import useCart from '../hooks/useCart'
 import useStep from '../hooks/useStep'
 import { MovieCard } from './MovieCard'

@@ -43,7 +43,7 @@ export default function Header({ step }: HeaderProps) {
         <li data-content={getStepIcon(2)} className={`step ${getStepClass(2)}`}>Select Seat</li>
         <li data-content={getStepIcon(3)} className={`step ${getStepClass(3)}`}>Checkout</li>
       </ul>
-      {step < 4 && <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
+      {/* {(step > 0 && step < 4) && <div className="grid grid-flow-col gap-5 text-center auto-cols-max">
         <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
           <span className="font-mono text-5xl">
             <span>{Math.floor(timeLeft / 60).toString().padStart(2, "0")}</span>
@@ -56,7 +56,7 @@ export default function Header({ step }: HeaderProps) {
           </span>
           sec
         </div>
-      </div>}
+      </div>} */}
     </div>
   )
 }

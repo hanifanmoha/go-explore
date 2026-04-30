@@ -72,12 +72,12 @@ func UnproperlyInitDatabaseSchema(pool *pgxpool.Pool) error {
 	CREATE TABLE IF NOT EXISTS bookings (
 		id SERIAL PRIMARY KEY,
 		movie_id INTEGER NOT NULL REFERENCES movies(id) ON DELETE CASCADE,
-		seat_number VARCHAR(10) NOT NULL,
-		user_id INTEGER NOT NULL,
+		seat_id INTEGER NOT NULL REFERENCES seats(id) ON DELETE CASCADE,
+		user_id TEXT NOT NULL,
 		status TEXT NOT NULL DEFAULT 'booked',
 		created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
 		updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-		UNIQUE(movie_id, seat_number)
+		UNIQUE(movie_id, seat_id)
 	);
 	`
 

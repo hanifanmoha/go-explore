@@ -37,6 +37,16 @@ type SeatResponse struct {
 	Status     string `json:"status"`
 }
 
+type BookingResponse struct {
+	ID      int            `json:"id"`
+	MovieID int            `json:"movie_id"`
+	SeatID  int            `json:"seat_id"`
+	UserID  string         `json:"user_id"`
+	Status  string         `json:"status"`
+	Movie   *MovieResponse `json:"movie,omitempty"`
+	Seat    *SeatResponse  `json:"seat,omitempty"`
+}
+
 func (h *Handler) GetMovies(w http.ResponseWriter, r *http.Request) {
 
 	movies, err := h.movieService.GetAllMovies(r.Context())
@@ -122,5 +132,65 @@ func (h *Handler) GetSeats(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(response)
+
+}
+
+func (h *Handler) GetBookings(w http.ResponseWriter, r *http.Request) {
+
+	userID := r.PathValue("user_id")
+	if userID == "" {
+		slog.Error("user_id query parameter is required")
+		http.Error(w, "user_id query parameter is required", http.StatusBadRequest)
+		return
+	}
+
+	bookings, err := h.bookingService.GetBookingsByUserID(r.Context(), userID)
+	if err != nil {
+		slog.Error(err.Error())
+		http.Error(w, "Failed to fetch bookings", http.StatusInternalServerError)
+		return
+	}
+
+	var response []BookingResponse
+	for _, booking := range bookings {
+		response = append(response, BookingResponse{
+			ID:      booking.ID,
+			MovieID: booking.MovieID,
+			SeatID:  booking.SeatID,
+			UserID:  booking.UserID,
+			Status:  booking.Status,
+		})
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(response)
+
+}
+
+func (h *Handler) CreateBooking(w http.ResponseWriter, r *http.Request) {
+
+	type CreateBookingRequest struct {
+		UserID  string `json:"user_id"`
+		MovieID int    `json:"movie_id"`
+		SeatID  int    `json:"seat_id"`
+	}
+
+	var req CreateBookingRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		slog.Error(err.Error())
+		http.Error(w, "Invalid request body", http.StatusBadRequest)
+		return
+	}
+
+	err := h.bookingService.OrderSeat(r.Context(), req.MovieID, req.SeatID, req.UserID)
+	if err != nil {
+		slog.Error(err.Error())
+		http.Error(w, "Failed to create booking", http.StatusInternalServerError)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(map[string]string{"message": "Booking created successfully"})
 
 }

@@ -8,5 +8,6 @@ import (
 )
 
 type BookingRepository interface {
+	GetBookingsByUserID(ctx context.Context, userID string) ([]entities.Booking, error)
 	CreateBooking(ctx context.Context, tx pgx.Tx, booking *entities.Booking) (*entities.Booking, error)
 }

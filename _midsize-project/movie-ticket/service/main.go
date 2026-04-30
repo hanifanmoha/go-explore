@@ -49,6 +49,10 @@ func main() {
 	router.HandleFunc("GET /movies", handler.GetMovies)
 	router.HandleFunc("GET /movies/{id}", handler.GetMovie)
 	router.HandleFunc("GET /movies/{id}/seats", handler.GetSeats)
+	router.HandleFunc("GET /bookings/{user_id}", handler.GetBookings)
+	router.HandleFunc("POST /bookings", handler.CreateBooking)
+
+	// Create the server
 
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", config.GetPort()),

@@ -30,6 +30,10 @@ func NewBookingService(
 	}
 }
 
+func (s *BookingService) GetBookingsByUserID(ctx context.Context, userID string) ([]entities.Booking, error) {
+	return s.bookingRepo.GetBookingsByUserID(ctx, userID)
+}
+
 func (s *BookingService) BookSeat(ctx context.Context, movieID int, seatID int, userID string) error {
 	return nil
 }

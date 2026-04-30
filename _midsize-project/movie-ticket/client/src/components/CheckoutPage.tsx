@@ -1,27 +1,62 @@
-import { movies } from "../data"
+import { useEffect, useState } from "react"
 import useCart from "../hooks/useCart"
 import useStep from "../hooks/useStep"
 import { MovieCard } from "./MovieCard"
+import { generateRandomID } from "../utils/idGenerator"
 
 export default function CheckoutPage() {
 
+  const userID = useCart((state) => state.userID)
   const movieID = useCart((state) => state.movieID)
   const seatID = useCart((state) => state.seatID)
+  const seatLabel = useCart((state) => state.seatLabel)
   const prevStep = useStep((state) => state.prevStep)
   const nextStep = useStep((state) => state.nextStep)
 
-  const movie = movies.find((movie) => movie.id === movieID)
+  const [movie, setMovie] = useState(null)
+
+  useEffect(() => {
+    if (!movieID) return
+    fetch(`http://localhost:6001/movies/${movieID}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMovie(data)
+      })
+      .catch((error) => {
+        console.error('Error fetching movie:', error)
+      })
+  }, [movieID])
 
   function checkoutInfo() {
     return (
       <div>
-        <p><strong>Seat:</strong> {seatID}</p>
+        <p><strong>Seat:</strong> {`${seatLabel} (ID: ${seatID})`}</p>
       </div>
     )
   }
 
-  function handleCheckout() {
-    nextStep()
+  async function handleCheckout() {
+    try {
+      const response = await fetch("http://localhost:6001/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id: userID, // Replace with actual user ID
+          movie_id: movieID,
+          seat_id: seatID,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error("Failed to create booking")
+      }
+
+      nextStep()
+    } catch (error) {
+      alert("Error creating booking: " + error.message)
+    }
   }
 
   return (
@@ -30,7 +65,7 @@ export default function CheckoutPage() {
         id={movie?.id || ""}
         title={movie?.title || ""}
         description={checkoutInfo()}
-        imageUrl={movie?.imageUrl || ""}
+        imageUrl={movie?.image_url || ""}
       />
       <div className="flex flex-col gap-4 w-full">
         <button className="btn btn-primary w-full" onClick={handleCheckout}>Checkout</button>

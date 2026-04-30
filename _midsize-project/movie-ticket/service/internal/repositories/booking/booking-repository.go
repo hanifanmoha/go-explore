@@ -21,6 +21,37 @@ func NewBookingRepository(dbClient *clients.DatabaseClient) repositories_model.B
 	}
 }
 
+func (r *BookingRepository) GetBookingsByUserID(ctx context.Context, userID string) ([]entities.Booking, error) {
+
+	query := sq.Select("id", "movie_id", "seat_id", "user_id", "status").
+		From("bookings").
+		Where(sq.Eq{"user_id": userID}).
+		PlaceholderFormat(sq.Dollar)
+
+	sql, args, err := query.ToSql()
+	if err != nil {
+		return nil, err
+	}
+
+	rows, err := r.dbClient.Pool.Query(ctx, sql, args...)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var bookings []entities.Booking
+	for rows.Next() {
+		var booking entities.Booking
+		err := rows.Scan(&booking.ID, &booking.MovieID, &booking.SeatID, &booking.UserID, &booking.Status)
+		if err != nil {
+			return nil, err
+		}
+		bookings = append(bookings, booking)
+	}
+
+	return bookings, nil
+}
+
 func (r *BookingRepository) CreateBooking(ctx context.Context, tx pgx.Tx, booking *entities.Booking) (*entities.Booking, error) {
 
 	query := sq.Insert("bookings").
