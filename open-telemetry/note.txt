@@ -1,0 +1,15 @@
+# Check Grafana Metrics
+
+Data Source
+
+1. Open Grafana localhost:3000
+2. Setup Prometheus
+  - Connections > Data sources > Add Prometheus (http://prometheus:9090)
+
+Metrics
+
+1. Explore > prometheus
+
+- rate(http_requests_total[1m])
+- rate(http_errors_total[1m])
+- histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[1m]))

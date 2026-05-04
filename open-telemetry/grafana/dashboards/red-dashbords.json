@@ -1,0 +1,34 @@
+{
+  "title": "RED Metrics Dashboard",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "RPS (All Services)",
+      "targets": [
+        {
+          "expr": "rate(http_requests_total[1m])"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Errors (All Services)",
+      "targets": [
+        {
+          "expr": "rate(http_errors_total[1m])"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Latency p95",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[1m]))"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 30,
+  "version": 1
+}
